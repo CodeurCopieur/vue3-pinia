@@ -16,6 +16,7 @@ const counter = useCounterStore();
     </a>
   </div> -->
   <p>Counter : {{ counter.count }}</p>
+  <p>Counter : {{ counter.doubleCount }}</p>
   <button @click="counter.increment">Incrémentation</button>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
