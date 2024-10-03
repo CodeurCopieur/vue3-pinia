@@ -1,8 +1,15 @@
 <script setup>
+import { storeToRefs } from "pinia";
 import { useCounterStore } from './stores/counter';
+import { computed } from "vue";
 
 // import HelloWorld from './components/HelloWorld.vue'
 const counter = useCounterStore();
+ // Utiliser storeToRefs pour conserver la réactivité lors de la déstructuration
+const {count, doubleCount} = storeToRefs(counter);
+const countCpt = computed(() => counter.count);
+const doubleCountCpt = computed(() => counter.doubleCount);
+const { increment } = counter
 
 </script>
 
@@ -15,9 +22,9 @@ const counter = useCounterStore();
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div> -->
-  <p>Counter : {{ counter.count }}</p>
-  <p>Counter : {{ counter.doubleCount }}</p>
-  <button @click="counter.increment">Incrémentation</button>
+  <p>Counter : {{ countCpt }}</p>
+  <p>Counter : {{ doubleCountCpt }}</p>
+  <button @click="increment">Incrémentation</button>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
