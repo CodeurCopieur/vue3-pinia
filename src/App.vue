@@ -1,31 +1,28 @@
 <script setup>
-import { storeToRefs } from "pinia";
+import { storeToRefs, mapState, mapActions } from "pinia";
 import { useCounterStore } from './stores/counter';
 import { computed } from "vue";
 
 // import HelloWorld from './components/HelloWorld.vue'
-const counter = useCounterStore();
+// const counter = useCounterStore();
  // Utiliser storeToRefs pour conserver la réactivité lors de la déstructuration
-const {count, doubleCount} = storeToRefs(counter);
-const countCpt = computed(() => counter.count);
-const doubleCountCpt = computed(() => counter.doubleCount);
-const { increment } = counter
+// const {count, doubleCount} = storeToRefs(counter);
+// const countCpt = computed(() => counter.count);
+// const doubleCountCpt = computed(() => counter.doubleCount);
+// const { increment } = counter;
+
+const { count, doubleCount } = mapState(useCounterStore, ['count', 'doubleCount']);
+const { increment } = mapActions(useCounterStore, ['increment']);
 
 </script>
 
 <template>
-  <!-- <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div> -->
-  <p>Counter : {{ countCpt }}</p>
-  <p>Counter : {{ doubleCountCpt }}</p>
+
+  <!-- <p>countCpt => computed : {{ countCpt }}</p>
+  <p>DoubleCountCpt => computed : {{ doubleCountCpt }}</p> -->
+  <hr>
+  <p>Count : {{ count }}</p>
   <button @click="increment">Incrémentation</button>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
 <style scoped>
