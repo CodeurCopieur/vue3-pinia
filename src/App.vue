@@ -1,35 +1,38 @@
 <script setup>
-import { storeToRefs, mapState, mapActions } from "pinia";
-import { useCounterStore } from './stores/counter';
-
-import { computed, onMounted } from "vue";
 
 import HelloWorld from './components/HelloWorld.vue'
 
-// useCounterStore le second
-const counter = useCounterStore();
- // Utiliser storeToRefs pour conserver la réactivité lors de la déstructuration
-const {count, count2, doubleCount} = storeToRefs(counter);
-const countCpt = computed(() => counter.count);
-const doubleCountCpt = computed(() => counter.doubleCount);
-// const { increment } = counter;
+// import { storeToRefs, mapState, mapActions } from "pinia";
+// import { useCounterStore } from './stores/counter';
 
-const { increment } = mapActions(useCounterStore, ['increment', '$reset', '$patch']);
+// import { computed, onMounted } from "vue";
 
-onMounted(()=> {
-  console.log('mounted')
-  this.$subscribe((mutation, state) => {
-    console.log(mutation);
-    console.log(state);
+
+
+// // useCounterStore le second
+// const counter = useCounterStore();
+//  // Utiliser storeToRefs pour conserver la réactivité lors de la déstructuration
+// const {count, count2, doubleCount} = storeToRefs(counter);
+// const countCpt = computed(() => counter.count);
+// const doubleCountCpt = computed(() => counter.doubleCount);
+// // const { increment } = counter;
+
+// const { increment } = mapActions(useCounterStore, ['increment', '$reset', '$patch']);
+
+// onMounted(()=> {
+//   console.log('mounted')
+//   this.$subscribe((mutation, state) => {
+//     console.log(mutation);
+//     console.log(state);
     
-  })
-}) 
+//   })
+// }) 
 
 </script>
 
 <template>
 
-  <p>countCpt => computed : {{ countCpt }}</p>
+  <!-- <p>countCpt => computed : {{ countCpt }}</p>
   <p>DoubleCountCpt => computed : {{ doubleCountCpt }}</p>
   <hr>
   <p>Count : {{ count }}</p>
@@ -37,7 +40,7 @@ onMounted(()=> {
   <p>doubleCount : {{ doubleCount }}</p>
   <button @click="increment">Incrémentation</button>
   <button @click="$reset()">Reset</button>
-
+ -->
 
   <HelloWorld />
 </template>
