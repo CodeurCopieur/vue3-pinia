@@ -1,28 +1,45 @@
 <script setup>
 import { storeToRefs, mapState, mapActions } from "pinia";
 import { useCounterStore } from './stores/counter';
-import { computed } from "vue";
 
-// import HelloWorld from './components/HelloWorld.vue'
-// const counter = useCounterStore();
+import { computed, onMounted } from "vue";
+
+import HelloWorld from './components/HelloWorld.vue'
+
+// useCounterStore le second
+const counter = useCounterStore();
  // Utiliser storeToRefs pour conserver la réactivité lors de la déstructuration
-// const {count, doubleCount} = storeToRefs(counter);
-// const countCpt = computed(() => counter.count);
-// const doubleCountCpt = computed(() => counter.doubleCount);
+const {count, count2, doubleCount} = storeToRefs(counter);
+const countCpt = computed(() => counter.count);
+const doubleCountCpt = computed(() => counter.doubleCount);
 // const { increment } = counter;
 
-const { count, doubleCount } = mapState(useCounterStore, ['count', 'doubleCount']);
-const { increment } = mapActions(useCounterStore, ['increment']);
+const { increment } = mapActions(useCounterStore, ['increment', '$reset', '$patch']);
+
+onMounted(()=> {
+  console.log('mounted')
+  this.$subscribe((mutation, state) => {
+    console.log(mutation);
+    console.log(state);
+    
+  })
+}) 
 
 </script>
 
 <template>
 
-  <!-- <p>countCpt => computed : {{ countCpt }}</p>
-  <p>DoubleCountCpt => computed : {{ doubleCountCpt }}</p> -->
+  <p>countCpt => computed : {{ countCpt }}</p>
+  <p>DoubleCountCpt => computed : {{ doubleCountCpt }}</p>
   <hr>
   <p>Count : {{ count }}</p>
+  <p>Count2 : {{ count2 }}</p>
+  <p>doubleCount : {{ doubleCount }}</p>
   <button @click="increment">Incrémentation</button>
+  <button @click="$reset()">Reset</button>
+
+
+  <HelloWorld />
 </template>
 
 <style scoped>

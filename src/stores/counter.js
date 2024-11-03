@@ -4,7 +4,8 @@ import { ref, computed } from "vue";
 export const useCounterStore = defineStore('counterStore', {
   state: () => {
     return {
-      count: 0
+      count: 0,
+      count2: 2
     }
   },
   getters: {
