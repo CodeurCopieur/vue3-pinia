@@ -3,7 +3,7 @@ import { storeToRefs } from "pinia";
   import { useCounterStore } from '../stores/counter2';
 
   const counter = useCounterStore();
-  const {count, name, doubleCount} = storeToRefs(counter);
+  const {count, name, doubleCount, doubleCountPlusOne, doubleCountPlusOne2, getUserById} = storeToRefs(counter);
 
   const { increment, $reset } = counter;
 
@@ -22,9 +22,12 @@ import { storeToRefs } from "pinia";
 
 <template>
 
-  <p>Count : {{ count }}</p>
+  <p>count : {{ count }}</p>
   <p>doubleCount : {{ doubleCount }}</p>
   <p>name : {{ name }}</p>
+  <p>doubleCountPlusOne : {{ doubleCountPlusOne }}</p>
+  <p>doubleCountPlusOne2 : {{ doubleCountPlusOne2(2) }}</p>
+  <p>User avec l'id 2 : {{ getUserById(2).name }}</p>
   <button @click="add()">Incrémentation</button>
   <button @click="counter.$reset()">Reset</button>
 </template>
